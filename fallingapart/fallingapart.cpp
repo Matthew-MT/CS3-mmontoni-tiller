@@ -52,13 +52,13 @@ void compute() {
 }
 
 vector<int> filter(vector<int> values) {
-    sort(values.data(), values.data() + values.size());
+    sort(values.begin(), values.end());
 
     vector<int> output{0, 0};
     for (int i = 0; i < values.size(); i++) output.data()[i % 2] += values.at(i);
 
-    sort(output.data(), output.data() + output.size());
-    reverse(output.data(), output.data() + output.size());
+    sort(output.begin(), output.end());
+    reverse(output.begin(), output.end());
 
     return output;
 }

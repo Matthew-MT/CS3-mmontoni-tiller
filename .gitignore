@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Ignore vscode stuff
+.vscode/
+.DS_Store/
