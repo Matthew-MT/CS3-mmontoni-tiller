@@ -1,3 +1,12 @@
+/**
+ * Date: 09/09/19
+ * Author: Matthew M-T
+ * Info:
+ * Compiled and tested in g++ v9.2.1
+ * 
+ * Comments added 09/09/19, code finished 09/02/19
+ */
+
 #include <unordered_map>
 #include <iostream>
 #include <cassert>
@@ -39,17 +48,17 @@ int main(int argCount, char* args[]) {
  */
 void test() {
     unordered_map<string, string> assertion = {
-        pair<string, string> {"this", "histay"},
-        pair<string, string> {"word", "ordway"},
-        pair<string, string> {"was", "asway"},
-        pair<string, string> {"good", "oodgay"},
-        pair<string, string> {"but", "utbay"},
-        pair<string, string> {"we", "eway"},
-        pair<string, string> {"changed", "hangedcay"},
-        pair<string, string> {"it", "tiay"}
+        pair<string, string> {"histay", "this"},
+        pair<string, string> {"ordway", "word"},
+        pair<string, string> {"asway", "was"},
+        pair<string, string> {"oodgay", "good"},
+        pair<string, string> {"utbay", "but"},
+        pair<string, string> {"eway", "we"},
+        pair<string, string> {"hangedcay", "changed"},
+        pair<string, string> {"tiay", "it"}
     };
     string word1 = "histay", word2 = "oodgay", word3 = "however";
-    assert(checkWord(word1, assertion) == "word"); // assert 1
+    assert(checkWord(word1, assertion) == "this"); // assert 1
     assert(checkWord(word2, assertion) == "good"); // assert 2
     assert(checkWord(word3, assertion) == "eh");   // assert 3
     cout << "All test cases passed.";
@@ -74,7 +83,6 @@ void getInputs(unordered_map<string, string>& dictionary) {
  * Returns the word corresponding to a keyword that is contained within the passed unordered_map, or returns "eh" if not found.
  */
 string checkWord(string& word, unordered_map<string, string>& dictionary) {
-    unordered_map<string, string>::iterator found = dictionary.find(word);
-    if (found != dictionary.end()) return found->second;
+    if (dictionary.count(word) > 0) return dictionary.at(word);
     else return "eh";
 }
