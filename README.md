@@ -1,5 +1,5 @@
 # CS3-mmontoni-till
- 
+
 CS3 Project repo. Contains all projects for [CSCI-250-09.19.19].
 
 ## 1: Falling apart
@@ -9,7 +9,13 @@ CS3 Project repo. Contains all projects for [CSCI-250-09.19.19].
 - Total points: 100
 
 ## 2: Babelfish
-- Solved using map template class and unordered_map. Also used std::regex. Kattis accepted (50 pts)
+- Solved using unordered_map template class. Also used std::regex. Kattis accepted (50 pts)
+- Wrote and tested 3 independent test cases (10*3 = 30 pts)
+- Screenshot is in the file screenshot.jpg (10 pts)
+- Total points: 100
+
+## 3: CD
+- Solved using unordered_map template class and binary_search. Kattis accepted (50 pts)
 - Wrote and tested 3 independent test cases (10*3 = 30 pts)
 - Screenshot is in the file screenshot.jpg (10 pts)
 - Total points: 100

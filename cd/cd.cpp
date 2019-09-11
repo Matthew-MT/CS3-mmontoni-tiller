@@ -5,17 +5,19 @@
  * Compiled & tested in g++ v9.2.1
  */
 
+#include <algorithm>
 #include <iostream>
+#include <cassert>
 #include <vector>
 #include <string>
-#include <cassert>
 
 using namespace std;
 
 void test();
 void compute();
-void getInputs(pair<vector<int>, vector<int>>&, const int&, const int&);
-int countDupes(pair<vector<int>, vector<int>>&);
+void getInputs(vector<int>& inputs, const int& num);
+int countDupes(vector<int>& inputs, const int& num);
+bool findCD(vector<int>& CDs, const int& CD);
 
 int main(int argCount, char* args[]) {
     if (argCount > 1) {
@@ -27,53 +29,39 @@ int main(int argCount, char* args[]) {
 }
 
 void test() {
-    pair<vector<int>, vector<int>> assert1 = {
-        vector<int> {1, 2, 4, 6},
-        vector<int> {2, 3, 4}
-    };
-    assert(countDupes(assert1) == 2);
-    pair<vector<int>, vector<int>> assert2 = {
-        vector<int> {3, 5, 6, 10},
-        vector<int> {4, 6, 7, 8, 9}
-    };
-    assert(countDupes(assert2) == 1);
-    pair<vector<int>, vector<int>> assert3 = {
-        vector<int> {2, 4, 6, 8, 10, 12},
-        vector<int> {5, 6, 7, 8, 9, 10}
-    };
-    assert(countDupes(assert3) == 3);
+    vector<int> assertion {1, 2, 4, 6, 7, 8, 10, 14, 15, 16};
+    assert(findCD(assertion, 4));
+    assert(!findCD(assertion, 9));
+    assert(findCD(assertion, 14));
     cout << "All test cases passed.";
+    return;
 }
 
 void compute() {
     int a, b;
-    pair<vector<int>, vector<int>> inputs;
-    cin >> a >> b;
-    getInputs(inputs, a, b);
-    cin >> a >> b;
-    if (a == 0 && b == 0) cout << countDupes(inputs);
+    do {
+        if (!(cin >> a >> b)) return;
+        if (a != 0 && b != 0) {
+            vector<int> inputs;
+            getInputs(inputs, a);
+            sort(inputs.begin(), inputs.end());
+            cout << countDupes(inputs, b) << '\n';
+        } else break;
+    } while (a != 0 && b != 0);
+    return;
 }
 
-void getInputs(pair<vector<int>, vector<int>>& inputs, const int& a, const int& b) {
+void getInputs(vector<int>& inputs, const int& num) {
     int input;
-    for (int i = 0; i < a; i++) {
-        cin >> input;
-        inputs.first.push_back(input);
-    }
-    for (int i = 0; i < b; i++) {
-        cin >> input;
-        inputs.second.push_back(input);
-    }
+    for (int i = 0; i < num && cin >> input; i++) inputs.push_back(input);
 }
 
-int countDupes(pair<vector<int>, vector<int>>& inputs) {
-    int both = 0;
-    for (int i = 0, j = 0; i < inputs.first.size() && j < inputs.second.size(); i++) {
-        if (inputs.first[i] > inputs.second[j]) {
-            for (; j < inputs.second.size() && inputs.first[i] > inputs.second[j]; j++) {}
-        }
-        if (inputs.first[i] == inputs.second[j]) j++, both++;
-        if (j >= inputs.second.size()) break;
-    }
+int countDupes(vector<int>& inputs, const int& num) {
+    int input, both = 0;
+    for (int i = 0; i < num && cin >> input; i++) if (findCD(inputs, input)) both++;
     return both;
+}
+
+bool findCD(vector<int>& CDs, const int& CD) {
+    return binary_search(CDs.begin(), CDs.end(), CD);
 }
