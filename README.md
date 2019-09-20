@@ -27,7 +27,7 @@ CS3 Project repo. Contains all projects for [CSCI-250-09.19.19].
 - Total points: 100
 
 ## 5: ICPC Tutorial
-- Solved using lambda functions. No temmplate classes necessary. Kattis accepted (50 pts)
+- Solved using lambda functions. No template classes necessary. Kattis accepted (50 pts)
 - Wrote and tested 3 independent test cases (10*3 = 30 pts)
 - Screenshot is in the file screenshot.jpg (10 pts)
 - Total points: 100
