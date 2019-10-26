@@ -46,3 +46,4 @@ CS3 Project repo. Contains all projects for [CSCI-250-09.19.19].
     - Nodes are initialized to 1
     - Punctuation is ignored
     - Provided a menu option to exit program
+    - Total points: 100
