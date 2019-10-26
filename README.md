@@ -31,3 +31,18 @@ CS3 Project repo. Contains all projects for [CSCI-250-09.19.19].
 - Wrote and tested 3 independent test cases (10*3 = 30 pts)
 - Screenshot is in the file screenshot.jpg (10 pts)
 - Total points: 100
+
+## 6: Binary Search Tree
+- Main file: bst.cpp
+    - Windows-runnable executable: bst.exe
+- Implemented BST on my own, including all relevant methods (40 pts)
+- Provided a prompt to input a file for the program to read into the tree (20 pts)
+    - Used sample file csi.txt
+- Provided menu options for the user to display the words in all three BST traversal techniques, to the screen (10 pts)
+- Provided a menu option to look up a word and display how many times it has been found in the file (10 pts)
+- Provided an option to delete a word from the tree (10 pts)
+- Provided a menu option to print the top ten words in terms of frequency to a file specified by the user (10 pts)
+- Other data:
+    - Nodes are initialized to 1
+    - Punctuation is ignored
+    - Provided a menu option to exit program
