@@ -137,8 +137,8 @@ void Pop::recomputePos() {
 }
 
 void Pop::recomputeSizes() {
-    right.setSize({padRight, left.getSize().x});
-    bottom.setSize({top.getSize().y, padBottom});
+    right.setSize({padRight, left.getSize().y});
+    bottom.setSize({top.getSize().x, padBottom});
     this->recomputePos();
 }
 

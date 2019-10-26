@@ -154,12 +154,7 @@ void Scroll::setScrollVirtualHeight(float height) {
 }
 
 void Scroll::setPositionUpdateAction(function<void(float percentilePos, float contentHeight)> fnc) {onPositionUpdate = fnc;}
-
-void Scroll::setFillColor(const sf::Color& color, bool temp) {
-    if (temp) bar.setFillColor(color);
-    else bar.setFillColor(mainColor = color);
-}
-
+void Scroll::setFillColor(const sf::Color& color, bool temp) {bar.setFillColor(color, temp);}
 void Scroll::setBaseColor(const sf::Color& color) {base.setFillColor(color);}
 void Scroll::invert(bool temp) {bar.invert(temp);}
 void Scroll::revert() {bar.revert();}

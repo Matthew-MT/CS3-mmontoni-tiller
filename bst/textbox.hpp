@@ -25,7 +25,7 @@ private:
     sf::Vector2f padding;
     sf::Time focusTime;
     function<void(TextBox_0* textbox)> onHover, onUnHover, onClick, onUnClick;
-    function<void(string buffer)> onEnter;
+    function<void(TextBox_0* textbox, string buffer)> onEnter;
 
     void recomputeText();
     void recomputePos();
@@ -48,7 +48,7 @@ public:
         const sf::Vector2f& size = {64.f, -1.f},
         const sf::Color& bgColor = sWhite,
         const sf::Color& txtColor = sBlack,
-        const pair<sf::Color, sf::Color> popColors = {dGrey, sWhite},
+        const pair<sf::Color, sf::Color> popColors = {dGrey, lGrey},
         float outlineThickness = 1.f
     );
     void setPosition(const sf::Vector2f& pos);
@@ -60,7 +60,8 @@ public:
     void setUnHoverAction(function<void(TextBox_0* textbox)> fnc);
     void setClickAction(function<void(TextBox_0* textbox)> fnc);
     void setUnClickAction(function<void(TextBox_0* textbox)> fnc);
-    void setEnterAction(function<void(string buffer)> fnc);
+    void setEnterAction(function<void(TextBox_0* textbox, string buffer)> fnc);
+    void setBuffer(string str = "");
 
     sf::Vector2f getPosition();
     sf::Vector2f getSize();
@@ -225,7 +226,13 @@ void TextBox_0::setHoverAction(function<void(TextBox_0* textbox)> fnc) {onHover 
 void TextBox_0::setUnHoverAction(function<void(TextBox_0* textbox)> fnc) {onUnHover = fnc;}
 void TextBox_0::setClickAction(function<void(TextBox_0* textbox)> fnc) {onClick = fnc;}
 void TextBox_0::setUnClickAction(function<void(TextBox_0* textbox)> fnc) {onUnClick = fnc;}
-void TextBox_0::setEnterAction(function<void(string buffer)> fnc) {onEnter = fnc;}
+void TextBox_0::setEnterAction(function<void(TextBox_0* textbox, string buffer)> fnc) {onEnter = fnc;}
+
+void TextBox_0::setBuffer(string str) {
+    text.setString(str);
+    curPos = 0;
+    this->recomputeText();
+}
 
 sf::Vector2f TextBox_0::getPosition() {return background.getPosition();}
 sf::Vector2f TextBox_0::getSize() {return background.getSize();}
@@ -244,7 +251,7 @@ void TextBox_0::focusTick(const sf::Time& time) {
 void TextBox_0::endFocus() {cursor.hide();}
 
 void TextBox_0::registerKeystroke(const sf::Keyboard::Key& key, bool shiftPressed) {
-    if (key == sf::Keyboard::Enter && (bool)onEnter) onEnter(text.getString());
+    if (key == sf::Keyboard::Enter && (bool)onEnter) onEnter(this, text.getString());
     else if (key == sf::Keyboard::BackSpace && curPos > 0) {
         string buffer = text.getString();
         text.setString(buffer.substr(0, curPos - 1) + buffer.substr(curPos, buffer.size()));

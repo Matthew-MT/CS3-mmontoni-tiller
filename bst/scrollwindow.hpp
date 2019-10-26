@@ -17,7 +17,7 @@ private:
     sf::RectangleShape background;
     sf::RenderTexture texture;
     sf::Sprite sprite;
-    vector<DataType>* data;
+    vector<DataType>* data = nullptr;
 
     float getFullElemHeight();
 
@@ -44,7 +44,7 @@ public:
     void setUnHoverAction(function<void(Scroll* scrollbar)> fnc);
     void setClickAction(function<void(Scroll* scrollbar)> fnc);
     void setUnClickAction(function<void(Scroll* scrollbar)> fnc);
-    void setData(const vector<DataType>& newData);
+    void setData(vector<DataType>* newData);
 
     sf::Vector2f getPosition();
     sf::Vector2f getSize();
@@ -83,7 +83,7 @@ template<class DataType> ScrollWindow_0<DataType>::ScrollWindow_0(
 
     scrollbar.setSize({scrollbarWidth, size.y});
     scrollbar.setScrollVirtualHeight(this->getFullElemHeight());
-    scrollbar.setScrollSize({0, data->size()});
+    scrollbar.setScrollSize({0, (data != nullptr ? data->size() : 0)});
 
     this->recomputeSizes();
 
@@ -94,10 +94,12 @@ template<class DataType> ScrollWindow_0<DataType>::ScrollWindow_0(
 
 template<class DataType> void ScrollWindow_0<DataType>::recomputePos() {
     sf::Vector2f pos = background.getPosition(), size = background.getSize(), scrollbarSize = scrollbar.getSize();
-    float scrollPosition = scrollbar.getScrollPosition() / data->size(),
-        hiddenAbove = scrollPosition * (this->getFullElemHeight() - size.y);
-    
-    sprite.setTextureRect({0, (int)hiddenAbove, (int)(size.x - scrollbarSize.x), (int)size.y});
+    if (data != nullptr) {
+        float scrollPosition = scrollbar.getScrollPosition() / data->size(),
+            hiddenAbove = scrollPosition * (this->getFullElemHeight() - size.y);
+        
+        sprite.setTextureRect({0, (int)hiddenAbove, (int)(size.x - scrollbarSize.x), (int)size.y});
+    }
 
     sprite.setPosition(pos);
     scrollbar.setPosition({pos.x + (size.x - scrollbarSize.x), pos.y});
@@ -110,7 +112,7 @@ template<class DataType> void ScrollWindow_0<DataType>::recomputeSizes() {
     texture.create((unsigned int)size.x, (fullElemHeight > 0 ? (unsigned int)fullElemHeight : (unsigned int)size.y));
     texture.clear(background.getFillColor());
 
-    {
+    if (data != nullptr) {
         float curOffset = 0.f;
         for (int i = 0; i < data->size(); i++) {
             data->at(i).setPosition({0.f, curOffset});
@@ -125,7 +127,7 @@ template<class DataType> void ScrollWindow_0<DataType>::recomputeSizes() {
 
 template<class DataType> float ScrollWindow_0<DataType>::getFullElemHeight() {
     float sum = 0.f;
-    for (int i = 0; i < data->size(); i++) sum += data->at(i).getSize().y;
+    if (data != nullptr) for (int i = 0; i < data->size(); i++) sum += data->at(i).getSize().y;
     return sum;
 }
 
@@ -149,8 +151,8 @@ template<class DataType> void ScrollWindow_0<DataType>::setUnHoverAction(functio
 template<class DataType> void ScrollWindow_0<DataType>::setClickAction(function<void(Scroll* scrollbar)> fnc) {scrollbar.setClickAction(fnc);}
 template<class DataType> void ScrollWindow_0<DataType>::setUnClickAction(function<void(Scroll* scrollbar)> fnc) {scrollbar.setUnClickAction(fnc);}
 
-template<class DataType> void ScrollWindow_0<DataType>::setData(const vector<DataType>& newData) {
-    data = &newData;
+template<class DataType> void ScrollWindow_0<DataType>::setData(vector<DataType>* newData) {
+    data = newData;
     this->recomputeInternalData();
 }
 
@@ -162,6 +164,7 @@ template<class DataType> void ScrollWindow_0<DataType>::updateHold(const sf::Vec
 template<class DataType> void ScrollWindow_0<DataType>::endHold() {scrollbar.endHold();}
 
 template<class DataType> bool ScrollWindow_0<DataType>::isMouseOverElem(const sf::Vector2f& mousePos) {
+    if (data == nullptr) return false;
     sf::Vector2f size = background.getSize();
     float
         scrollPosition = scrollbar.getScrollPosition() / data->size(),
@@ -186,7 +189,7 @@ template<class DataType> void ScrollWindow_0<DataType>::unClick() {scrollbar.unC
 
 template<class DataType> void ScrollWindow_0<DataType>::recomputeInternalData() {
     scrollbar.setScrollVirtualHeight(this->getFullElemHeight());
-    scrollbar.setScrollSize({0, data->size()});
+    scrollbar.setScrollSize({0, (data != nullptr ? data->size() : 0)});
     this->recomputeSizes();
 }
 
