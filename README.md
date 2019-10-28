@@ -33,6 +33,7 @@ CS3 Project repo. Contains all projects for [CSCI-250-09.19.19].
 - Total points: 100
 
 ## 6: Binary Search Tree
+Note: All code in the folder bst is mine, except for the code in bst/sfml. bst/sfml is the library I used to make the interface work.
 - Main file: bst.cpp
     - Windows-runnable executable: bst.exe
 - Implemented BST on my own, including all relevant methods (40 pts)
