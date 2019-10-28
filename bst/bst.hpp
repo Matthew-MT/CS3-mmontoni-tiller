@@ -101,7 +101,7 @@ private:
         else {
             if (parent->left() == nullptr) return {nullptr, parent};
             else {
-                pair<BSTElem<DataType>*, BSTElem<DataType>*> result = leftTraverse(parent->left());
+                pair<BSTElem<DataType>*, BSTElem<DataType>*> result = this->leftTraverse(parent->left());
                 if (result.first == nullptr) result.first = parent;
                 return result;
             }
@@ -122,8 +122,8 @@ private:
             if (result == at) {
                 delete parent; // Note: insertion function may cause overwriting of leaf nodes
                 return new BSTElem<DataType>(toBeAdded);
-            } else if (result == left) parent->setLeft(insElem(parent->left(), toBeAdded, elemH + 1));
-            else if (result == right) parent->setRight(insElem(parent->right(), toBeAdded, elemH + 1));
+            } else if (result == left) parent->setLeft(this->insElem(parent->left(), toBeAdded, elemH + 1));
+            else if (result == right) parent->setRight(this->insElem(parent->right(), toBeAdded, elemH + 1));
             else if (result == increment) parent->incrementCount();
         }
         return parent; // Finally, return current ptr back to calling function if no elements are inserted
@@ -188,8 +188,8 @@ private:
      */
     vector<BSTElem<DataType>*>& preTrav(BSTElem<DataType>* ptr, vector<BSTElem<DataType>*>& curVect) {
         curVect.push_back(ptr);
-        if (ptr->left() != nullptr) preTrav(ptr->left(), curVect);
-        if (ptr->right() != nullptr) preTrav(ptr->right(), curVect);
+        if (ptr->left() != nullptr) this->preTrav(ptr->left(), curVect);
+        if (ptr->right() != nullptr) this->preTrav(ptr->right(), curVect);
         return curVect;
     }
     
@@ -197,9 +197,9 @@ private:
      * Return a vector of elements using the inorder traversal method.
      */
     vector<BSTElem<DataType>*>& inTrav(BSTElem<DataType>* ptr, vector<BSTElem<DataType>*>& curVect) {
-        if (ptr->left() != nullptr) inTrav(ptr->left(), curVect);
+        if (ptr->left() != nullptr) this->inTrav(ptr->left(), curVect);
         curVect.push_back(ptr);
-        if (ptr->right() != nullptr) inTrav(ptr->right(), curVect);
+        if (ptr->right() != nullptr) this->inTrav(ptr->right(), curVect);
         return curVect;
     }
     
@@ -207,8 +207,8 @@ private:
      * Return a vector of elements using the postorder traversal method.
      */
     vector<BSTElem<DataType>*>& postTrav(BSTElem<DataType>* ptr, vector<BSTElem<DataType>*>& curVect) {
-        if (ptr->left() != nullptr) postTrav(ptr->left(), curVect);
-        if (ptr->right() != nullptr) postTrav(ptr->right(), curVect);
+        if (ptr->left() != nullptr) this->postTrav(ptr->left(), curVect);
+        if (ptr->right() != nullptr) this->postTrav(ptr->right(), curVect);
         curVect.push_back(ptr);
         return curVect;
     }
@@ -221,11 +221,11 @@ private:
         BST<DataType>::Behavior result = searchFnc(parent, toBeFound);
         if (result == at) return {parent, nullptr};
         else if (result == left) {
-            pair<BSTElem<DataType>*, BSTElem<DataType>*> returned = searchElem(parent->left(), toBeFound);
+            pair<BSTElem<DataType>*, BSTElem<DataType>*> returned = this->searchElem(parent->left(), toBeFound);
             if (returned.second == nullptr && returned.first != nullptr) returned.second = parent;
             return returned; 
         } else if (result == right) {
-            pair<BSTElem<DataType>*, BSTElem<DataType>*> returned = searchElem(parent->right(), toBeFound);
+            pair<BSTElem<DataType>*, BSTElem<DataType>*> returned = this->searchElem(parent->right(), toBeFound);
             if (returned.second == nullptr && returned.first != nullptr) returned.second = parent;
             return returned; 
         } else return {nullptr, nullptr};
@@ -238,8 +238,8 @@ private:
         if (parent == nullptr) return prev;
         else {
             unsigned int
-                leftRes = getHeight(parent->left(), prev + 1),
-                rightRes = getHeight(parent->right(), prev + 1);
+                leftRes = this->getHeightToBottom(parent->left(), prev + 1),
+                rightRes = this->getHeightToBottom(parent->right(), prev + 1);
             return (leftRes > rightRes ? leftRes : rightRes);
         }
     }
@@ -329,11 +329,11 @@ public:
         else {
             if (place.second != nullptr) { // Make sure the element's parent node is maintained
                 bool leftSide = (place.second)->left() == place.first;
-                BSTElem<DataType>* temp = delElem(place.first);
+                BSTElem<DataType>* temp = this->delElem(place.first);
                 if (leftSide) (place.second)->setLeft(temp);
                 else (place.second)->setRight(temp);
                 return (bool)temp;
-            } else if (root == place.first) return (bool)(root = delElem(place.first));
+            } else if (root == place.first) return (bool)(root = this->delElem(place.first));
             else throw "Deletion errors detected.\n";
         }
     }
@@ -341,7 +341,7 @@ public:
     /**
      * Public insertion method.
      */
-    void insertElement(DataType toBeAdded) {root = insElem(root, toBeAdded);}
+    void insertElement(DataType toBeAdded) {root = this->insElem(root, toBeAdded);}
 
     /**
      * Get the height of the tree from the root.
