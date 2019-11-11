@@ -49,3 +49,10 @@ Note: All code in the folder bst is mine, except for the code in bst/sfml. bst/s
     - Punctuation is ignored
     - Provided a menu option to exit program
     - Total points: 100
+
+## Extra Credit: Where's My Internet
+Note: Used own implementation of Graph.
+- Solved with minor tweaks to DFS algorithm. Kattis accepted (65 pts)
+- Wrote and tested 3 independent test cases (3*10 = 30 pts)
+- Screenshot is in the file screenshot.jpg (5 pts)
+- Total points: 100
