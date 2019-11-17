@@ -56,3 +56,11 @@ Note: Used own implementation of Graph.
 - Wrote and tested 3 independent test cases (3*10 = 30 pts)
 - Screenshot is in the file screenshot.jpg (5 pts)
 - Total points: 100
+
+## 7: Single Source, Shortest Path, Non-Negative Weights
+Note: I'm not too sure how I feel about using the algorithm provided directly in the notebook to solve this problem.
+Just feels too easy. It took only one try to get it to work, versus my own implementation.
+- Solved using Dijkstra's algorithm from CS3 notebook. Kattis accepted (65 pts)
+- Wrote and tested 3 independent test cases (3*10 = 30 pts)
+- Screenshot is in the file screenshot.jpg (5 pts)
+- Total points: 100
