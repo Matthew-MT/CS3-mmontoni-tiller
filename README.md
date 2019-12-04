@@ -64,3 +64,10 @@ Just feels too easy. It took only one try to get it to work, versus my own imple
 - Wrote and tested 3 independent test cases (3*10 = 30 pts)
 - Screenshot is in the file screenshot.jpg (5 pts)
 - Total points: 100
+
+## 8: Minimum Spanning Tree
+Note: Attempt at old solution is in folder `old_solns`.
+- Solved using Kruskal's algorithm. Kattis accepted (85 pts)
+- Wrote and tested 3 independent test cases (3*5 = 15 pts)
+- Screenshot is in the file screenshot.jpg (0 pts)
+- Total points: 100
