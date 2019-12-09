@@ -1,0 +1,48 @@
+## Search algorithms
+
+Binary search tree, 100k values: 0
+Binary search tree, 500k values: 0
+Binary search tree, 1m values: 0
+
+Generic binary search, 100k values: 0
+Generic binary search, 500k values: 8
+Generic binary search, 1m values: 10
+
+Generic find, 100k values: 0.3
+Generic find, 500k values: 22
+Generic find, 1m values: 45
+
+
+## Sort algorithms
+
+Generic unstable sort, 100k values: 28.9
+Generic unstable sort, 500k values: 158.4
+Generic unstable sort, 1m values: 358.3
+
+Quick sort, 100k values: 28.2
+Quick sort, 500k values: 203
+Quick sort, 1m values: 398
+
+Generic stable sort, 100k values: 34
+Generic stable sort, 500k values: 198.8
+Generic stable sort, 1m values: 434.5
+
+Merge sort, 100k values: 64.2
+Merge sort, 500k values: 395.3
+Merge sort, 1m values: 801.9
+
+Heap sort, 100k values: 69.8
+Heap sort, 500k values: 438.7
+Heap sort, 1m values: 1003.1
+
+Shell sort, 100k values: 61.8
+Shell sort, 500k values: 506.5
+Shell sort, 1m values: 1128.2
+
+// No data available for 500k & 1m for the following sort functions; Exection took too long
+
+Selection sort, 100k values: 36182.8
+
+Insertion sort, 100k values: 40131.1
+
+Bubble sort, 100k values: 81473.7

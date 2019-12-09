@@ -71,3 +71,17 @@ Note: Attempt at old solution is in folder `old_solns`.
 - Wrote and tested 3 independent test cases (3*5 = 15 pts)
 - Screenshot is in the file screenshot.jpg (0 pts)
 - Total points: 100
+
+## Final Project
+Note: I attempted to create a GUI to go with this project, but I wasn't able to get it working on time.
+Instead what I have created is a mish mash of different programs to try and reliably test the given functions.
+### Important: Times are displayed as CPU cycles, not seconds.
+### Also important: Due to difficulties, timeComplexity.txt is hand-sorted.
+- Tested 100k, 500k, & 1m random values (5 pts)
+- Tested 9 different sorting algorithms, gathered full data from 6 of them (6*5 = 30 pts)
+- Program tests each sort algorithm 10 times (15 pts)
+- Tested 3 different search algorithms (5*3 = 15 pts)
+- Program tests each search algorithm 10 times (10 pts)
+- Sorted algorithm running times are in the file timeComplexity.txt, sorted manually (5 pts)
+- No bonus points
+- Total points: 80

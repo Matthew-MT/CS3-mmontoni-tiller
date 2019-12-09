@@ -1,0 +1,11 @@
+Generic unstable sort, 1m values: 358.3
+
+Generic stable sort, 1m values: 434.5
+
+Heap sort, 1m values: 1003.1
+
+Merge sort, 1m values: 801.9
+
+Quick sort, 1m values: 398
+
+Shell sort, 1m values: 1128.2

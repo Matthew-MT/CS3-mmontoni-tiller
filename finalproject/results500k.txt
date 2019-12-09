@@ -1,0 +1,11 @@
+Generic unstable sort, 500k values: 158.4
+
+Generic stable sort, 500k values: 198.8
+
+Heap sort, 500k values: 438.7
+
+Merge sort, 500k values: 395.3
+
+Quick sort, 500k values: 203
+
+Shell sort, 500k values: 506.5

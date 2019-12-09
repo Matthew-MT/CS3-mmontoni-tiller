@@ -1,0 +1,12 @@
+Binary search tree, 100k values: 0
+Binary search tree, 500k values: 0
+Binary search tree, 1m values: 0
+
+Generic find, 100k values: 0.3
+Generic find, 500k values: 22
+Generic find, 1m values: 45
+
+Generic binary search, 100k values: 0
+Generic binary search, 500k values: 8
+Generic binary search, 1m values: 10
+
